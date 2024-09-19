@@ -1,26 +1,28 @@
 pipeline {
     agent any
     stages {
-        stage('checkout') {
+        stage('Checkout') {
             steps {
                 script {
                     git branch: 'main', changelog: false, poll: false, url: 'https://github.com/bhavani467/student-managementsystem.git'
                 }
             }
         }
-        stage('build') {
+        stage('Build') {
             steps {
                 script {
                     bat 'mvn clean install'
                 }
             }
-        } 
-		stage('deploy'){
-		    steps {
-			     script {
-				    bat 'copy C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\student management system\\target\\student-management-0.0.1-SNAPSHOT.jar  D:\\apache-tomcat-9.0.89\\webapps\\ROOT.jar'
-				}
-			}
-		}
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    def jarPath = "${env.WORKSPACE}\\target\\student-management-0.0.1-SNAPSHOT.jar"
+                    def destinationPath = "D:\\apache-tomcat-9.0.89\\webapps\\ROOT.jar"
+                    bat "copy \"${jarPath}\" \"${destinationPath}\""
+                }
+            }
+        }
     }
 }
