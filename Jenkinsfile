@@ -18,8 +18,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    def jarPath = "${env.WORKSPACE}\\target\\student-management-0.0.1-SNAPSHOT.jar"
-                    def destinationPath = "D:\\apache-tomcat-9.0.89\\webapps\\ROOT.jar"
+                    def jarPath = "${env.WORKSPACE}\\target\\student-management-0.0.1-SNAPSHOT.war"
+                    def destinationPath = "D:\\apache-tomcat-9.0.89\\webapps\\ROOT.war"
                     bat "copy \"${jarPath}\" \"${destinationPath}\""
                 }
             }
