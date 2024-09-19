@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    options {
+        pollSCM('* * * * *') // Poll SCM every minute
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -26,3 +29,4 @@ pipeline {
         }
     }
 }
+
