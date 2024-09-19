@@ -4,7 +4,7 @@ pipeline {
         stage('checkout') {
             steps {
                 script {
-                    git changelog: false, url: 'https://github.com/bhavani467/student-managementsystem.git'
+                    git branch: 'main', changelog: false, poll: false, url: 'https://github.com/bhavani467/student-managementsystem.git'
                 }
             }
         }
